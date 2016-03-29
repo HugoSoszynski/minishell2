@@ -5,9 +5,10 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Mar 29 16:31:36 2016 Hugo SOSZYNSKI
-** Last update Tue Mar 29 16:53:41 2016 Hugo SOSZYNSKI
+** Last update Tue Mar 29 17:10:25 2016 Hugo SOSZYNSKI
 */
 
+#include	<stddef.h>
 #include	<unistd.h>
 #include	"mysh.h"
 
@@ -20,5 +21,14 @@ int		error_msg(const char *msg)
 
 int		main(int ac, char **av, char **env)
 {
-  return (0);
+  char		**env_cpy;
+
+  (void)ac;
+  (void)av;
+  if (env == NULL || env[0] == NULL ||
+      (env_cpy = my_env_cpy((const char**)env)) == NULL)
+    return (error_msg("Can't get or copy the env"));
+  if (mysh(env_cpy) != SUCCESS)
+    return (ERROR);
+  return (SUCCESS);
 }

@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Mar 29 16:32:45 2016 Hugo SOSZYNSKI
-** Last update Tue Mar 29 16:46:12 2016 Hugo SOSZYNSKI
+** Last update Tue Mar 29 17:11:38 2016 Hugo SOSZYNSKI
 */
 
 #ifndef		MYSH_H_
@@ -25,5 +25,7 @@ char		*my_strcpy(char *dest, const char *src);
 int		my_strlen(const char *str);
 int		my_strncmp(const char *s1, const char *s2, const int nb);
 int		error_msg(const char *msg);
+int		mysh(char **env);
+void		my_free_wordtab(char **tab);
 
 #endif		/* !MYSH_H_ */

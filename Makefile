@@ -5,7 +5,7 @@
 ## Login   <hugo.soszynski@epitech.eu>
 ## 
 ## Started on  Tue Mar 29 16:08:49 2016 Hugo SOSZYNSKI
-## Last update Tue Mar 29 16:52:51 2016 Hugo SOSZYNSKI
+## Last update Tue Mar 29 17:08:47 2016 Hugo SOSZYNSKI
 ##
 
 CC	=	gcc
@@ -25,7 +25,8 @@ SRCS	=	src/main.c \
 		src/my_env_cpy.c \
 		src/my_strlen.c \
 		src/my_strncmp.c \
-		src/my_strcpy.c
+		src/my_strcpy.c \
+		src/mysh.c
 
 OBJS	=	$(SRCS:.c=.o)
 
