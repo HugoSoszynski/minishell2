@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Thu Jan 14 11:10:39 2016 Hugo SOSZYNSKI
-** Last update Tue Mar 29 17:32:46 2016 Hugo SOSZYNSKI
+** Last update Tue Mar 29 18:03:49 2016 Hugo SOSZYNSKI
 */
 
 #include		<unistd.h>
@@ -22,10 +22,10 @@ void			my_super_cat(char *buf,
   long int		size;
   long int		k;
 
-  size = -1;
-  if (*line != NULL)
+  if ((size = 0) == 0 && *line != NULL)
     {
-      while ((*line)[++size] != '\0');
+      while ((*line)[size] != '\0')
+	size++;
       if ((tmp = malloc((size + 1) * sizeof(char))) == NULL)
 	return ;
       k = -1;
@@ -33,16 +33,16 @@ void			my_super_cat(char *buf,
 	tmp[k] = (*line)[k];
       free(*line);
     }
-  if (((*line) = malloc((size + i + 2) * sizeof(char))) == NULL)
+  if (((*line) = malloc((size + i + 1) * sizeof(char))) == NULL)
     return ;
   k = 0;
-  if (size > 0)
-    while (k++ < size)
-      (*line)[k - 1] = tmp[k - 1];
+  if (size != 0)
+    while (k < size)
+      (*line)[k] = tmp[(k++)];
   while (*count < i)
     (*line)[k++] = buf[(*count)++];
   (*line)[k] = '\0';
-  (size > 0) ? (free(tmp)) : (tmp = NULL);
+  (size != 0) ? (free(tmp)) : (tmp = NULL);
 }
 
 int			my_test_inbuf(char *buf,

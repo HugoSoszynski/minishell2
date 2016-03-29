@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Mar 29 17:00:46 2016 Hugo SOSZYNSKI
-** Last update Tue Mar 29 17:12:58 2016 Hugo SOSZYNSKI
+** Last update Tue Mar 29 17:52:25 2016 Hugo SOSZYNSKI
 */
 
 #include	<unistd.h>
@@ -14,12 +14,23 @@
 #include	"mysh.h"
 #include	"get_next_line.h"
 
+static char	*my_prompt(void)
+{
+  char		*line;
+
+  line = NULL;
+  write(1, "$> ", 3);
+  line = get_next_line(0);
+  return (line);
+}
+
 int		mysh(char **env)
 {
   char		*line;
 
-  while ((line = get_next_line(0)) != NULL)
+  while ((line = my_prompt()) != NULL)
     {
+      write(1, line, my_strlen(line));
       free(line);
     }
   my_free_wordtab(env);
