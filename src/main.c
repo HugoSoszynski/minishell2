@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Mar 29 16:31:36 2016 Hugo SOSZYNSKI
-** Last update Tue Mar 29 17:10:25 2016 Hugo SOSZYNSKI
+** Last update Wed Apr  6 10:21:23 2016 Hugo SOSZYNSKI
 */
 
 #include	<stddef.h>
@@ -17,6 +17,13 @@ int		error_msg(const char *msg)
   write(2, msg, my_strlen(msg));
   write(2, "\n", 1);
   return (ERROR);
+}
+
+int		error_null(const char *msg)
+{
+  write(2, msg, my_strlen(msg));
+  write(2, "\n", 1);
+  return (NULL);
 }
 
 int		main(int ac, char **av, char **env)

@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Mar 29 17:00:46 2016 Hugo SOSZYNSKI
-** Last update Tue Mar 29 17:52:25 2016 Hugo SOSZYNSKI
+** Last update Sun Apr  3 14:49:25 2016 Hugo SOSZYNSKI
 */
 
 #include	<unistd.h>
@@ -30,7 +30,9 @@ int		mysh(char **env)
 
   while ((line = my_prompt()) != NULL)
     {
+      line = my_epurstr(line);
       write(1, line, my_strlen(line));
+      write(1, "\n", 1);
       free(line);
     }
   my_free_wordtab(env);
