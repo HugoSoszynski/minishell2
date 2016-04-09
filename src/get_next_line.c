@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Thu Jan 14 11:10:39 2016 Hugo SOSZYNSKI
-** Last update Tue Mar 29 18:03:49 2016 Hugo SOSZYNSKI
+** Last update Fri Apr  8 17:58:56 2016 Hugo SOSZYNSKI
 */
 
 #include		<unistd.h>
@@ -38,7 +38,7 @@ void			my_super_cat(char *buf,
   k = 0;
   if (size != 0)
     while (k < size)
-      (*line)[k] = tmp[(k++)];
+      (void)(((*line)[k] = tmp[k]) && (k = k + 1));
   while (*count < i)
     (*line)[k++] = buf[(*count)++];
   (*line)[k] = '\0';

@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Mar 29 16:32:45 2016 Hugo SOSZYNSKI
-** Last update Wed Apr  6 17:09:35 2016 Hugo SOSZYNSKI
+** Last update Sat Apr  9 18:37:42 2016 Hugo SOSZYNSKI
 */
 
 #ifndef			MYSH_H_
@@ -45,8 +45,8 @@
 #  define		T_DREDIRL	(5)
 # endif			/* !T_DREDIRL */
 
-# ifndef		T_END
-#  define		T_END		(6)
+# ifndef		T_NULL
+#  define		T_NULL		(6)
 # endif			/* !T_END */
 
 # ifndef		T_FILE
@@ -78,17 +78,17 @@ typedef struct		s_redir
 
 typedef struct		s_list
 {
-  struct s_list		next;
-  struct s_list		previous;
-  struct s_list		pipe;
-  bool			origin;
+  struct s_list		*next;
+  struct s_list		*pipe;
   char			**cmd;
+  bool			correct;
+  bool			origin;
 }			t_list;
 
 typedef struct		s_data
 {
   char			**env;
-  t_btree		*head;
+  t_list		*head;
 }			t_data;
 
 char			**my_env_cpy(const char **env);
@@ -101,6 +101,22 @@ int			error_msg(const char *msg);
 int			mysh(char **env);
 void			my_free_wordtab(char **tab);
 char			*my_epurstr(char *str);
-int			error_null(const char *msg);
+void			*error_null(const char *msg);
+int			find_next_state(char *line,
+					int *cpt, int state);
+char			*my_arg_dup(const char *line);
+void			init_cmd_node(t_list *current);
+void			init_cmd_node(t_list *current);
+int			state_cmd(char *line, int *cpt,
+				  t_list *current);
+int			state_error(char *line, int *cpt,
+				    t_list *current);
+int			state_line(char *line, int *cpt);
+int			state_pipe(char *line, int *cpt,
+				   t_list *current);
+int			state_semicol(char *line, int *cpt);
+t_list			*my_smachine(char **line);
+char			**add_to_wordtab(char **src, char *arg);
+void			my_free_list(t_list *list);
 
 #endif			/* !MYSH_H_ */

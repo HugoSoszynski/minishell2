@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Mar 29 17:00:46 2016 Hugo SOSZYNSKI
-** Last update Sun Apr  3 14:49:25 2016 Hugo SOSZYNSKI
+** Last update Sat Apr  9 18:44:01 2016 Hugo SOSZYNSKI
 */
 
 #include	<unistd.h>
@@ -27,12 +27,17 @@ static char	*my_prompt(void)
 int		mysh(char **env)
 {
   char		*line;
+  t_list	*list;
 
   while ((line = my_prompt()) != NULL)
     {
-      line = my_epurstr(line);
-      write(1, line, my_strlen(line));
-      write(1, "\n", 1);
+      if (*line != '\0')
+	{
+	  if ((list = my_smachine(&line)) != NULL)
+	    {
+	      my_free_list(list);
+	    }
+	}
       free(line);
     }
   my_free_wordtab(env);

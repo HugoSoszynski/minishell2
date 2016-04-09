@@ -5,13 +5,14 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Wed Apr  6 10:12:23 2016 Hugo SOSZYNSKI
-** Last update Wed Apr  6 10:32:21 2016 Hugo SOSZYNSKI
+** Last update Sat Apr  9 18:42:45 2016 Hugo SOSZYNSKI
 */
 
 #include	<stddef.h>
 #include	<stdlib.h>
 #include	<limits.h>
 #include	<unistd.h>
+#include	"mysh.h"
 
 static int	wordtab_len(char **tab)
 {
@@ -38,7 +39,7 @@ char		**add_to_wordtab(char **src, char *arg)
 
   if ((len = wordtab_len(src)) == -1)
     return (NULL);
-  if ((tmp = malloc((len + 1) * sizeof(char))) == NULL)
+  if ((tmp = malloc((len + 2) * sizeof(char*))) == NULL)
     return (error_null("Error: wordtab_len: can't perform malloc"));
   cpt = 0;
   while (src[cpt] != NULL)
@@ -46,8 +47,9 @@ char		**add_to_wordtab(char **src, char *arg)
       tmp[cpt] = src[cpt];
       cpt++;
     }
-  if ((tmp[cpt] = my_arg_dup(arg)) == NULL)
+  free(src);
+  if ((tmp[len] = my_arg_dup(arg)) == NULL)
     return (error_null("Error: wordtab_len: can't duplicate last arg"));
-  tmp[len] = NULL;
+  tmp[len + 1] = NULL;
   return (tmp);
 }

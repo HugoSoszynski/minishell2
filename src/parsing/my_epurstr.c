@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Fri Apr  1 15:39:41 2016 Hugo SOSZYNSKI
-** Last update Sun Apr  3 15:23:37 2016 Hugo SOSZYNSKI
+** Last update Sat Apr  9 13:03:21 2016 Hugo SOSZYNSKI
 */
 
 #include	<stddef.h>
@@ -47,7 +47,7 @@ char		*my_epurstr(char *str)
   int		new_cpt;
 
   new = NULL;
-  if ((new = malloc(my_strlen(str) * sizeof(char))) == NULL)
+  if ((new = malloc((my_strlen(str) + 1) * sizeof(char))) == NULL)
     return (NULL);
   change_to_space(str);
   str_cpt = -1;

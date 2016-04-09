@@ -5,7 +5,7 @@
 ## Login   <hugo.soszynski@epitech.eu>
 ## 
 ## Started on  Tue Mar 29 16:08:49 2016 Hugo SOSZYNSKI
-## Last update Sun Apr  3 14:46:29 2016 Hugo SOSZYNSKI
+## Last update Sat Apr  9 18:38:49 2016 Hugo SOSZYNSKI
 ##
 
 CC	=	gcc
@@ -27,7 +27,17 @@ SRCS	=	src/main.c \
 		src/my_strncmp.c \
 		src/my_strcpy.c \
 		src/mysh.c \
-		src/parsing/my_epurstr.c
+		src/parsing/my_epurstr.c \
+		src/parsing/find_next_state.c \
+		src/parsing/my_arg_dup.c \
+		src/parsing/start_smachine.c \
+		src/parsing/state_cmd.c \
+		src/parsing/state_error.c \
+		src/parsing/state_line.c \
+		src/parsing/state_pipe.c \
+		src/parsing/state_semicol.c \
+		src/parsing/word_tab_utils.c \
+		src/my_free_list.c
 
 OBJS	=	$(SRCS:.c=.o)
 
