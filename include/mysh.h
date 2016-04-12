@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Mar 29 16:32:45 2016 Hugo SOSZYNSKI
-** Last update Tue Apr 12 13:55:43 2016 Hugo SOSZYNSKI
+** Last update Tue Apr 12 15:03:35 2016 Hugo SOSZYNSKI
 */
 
 #ifndef			MYSH_H_
@@ -92,6 +92,7 @@ typedef struct		s_data
   t_list		*current;
   int			exec_pos;
   int			exec_return;
+  unsigned char		exit_return;
 }			t_data;
 
 char			**my_env_cpy(const char **env);

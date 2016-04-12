@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Mar 29 16:31:36 2016 Hugo SOSZYNSKI
-** Last update Tue Apr 12 09:47:16 2016 Hugo SOSZYNSKI
+** Last update Tue Apr 12 15:03:51 2016 Hugo SOSZYNSKI
 */
 
 #include	<stddef.h>
@@ -46,11 +46,12 @@ int		main(int ac, char **av, char **env)
   (void)av;
   exec.exec_pos = 0;
   exec.exec_return = SUCCESS;
+  exec.exit_return = 0;
   if (env == NULL || env[0] == NULL ||
       (exec.env = my_env_cpy((const char**)env)) == NULL)
     return (error_msg("Can't get or copy the env"));
   fstat(0, &prompt);
   if (((S_ISCHR(prompt.st_mode)) ? (mysh(&exec)) : (script(&exec))) != SUCCESS)
     return (ERROR);
-  return (SUCCESS);
+  return (exec.exit_return);
 }

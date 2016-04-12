@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Mon Apr 11 11:06:18 2016 Hugo SOSZYNSKI
-** Last update Tue Apr 12 13:14:17 2016 Hugo SOSZYNSKI
+** Last update Tue Apr 12 18:56:00 2016 Hugo SOSZYNSKI
 */
 
 #include	<stddef.h>
@@ -34,6 +34,8 @@ static int	check_path(char **cmd, char *path)
   cpt = 0;
   if ((cmd_len = my_strlen(*cmd)) == -1)
     return (ERROR);
+  if (access(cmd[0], X_OK) == 0)
+    return (SUCCESS);
   tmp = path;
   while (tmp != NULL)
     {
