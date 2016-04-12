@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Mar 29 16:32:45 2016 Hugo SOSZYNSKI
-** Last update Sat Apr  9 18:37:42 2016 Hugo SOSZYNSKI
+** Last update Tue Apr 12 13:55:43 2016 Hugo SOSZYNSKI
 */
 
 #ifndef			MYSH_H_
@@ -88,7 +88,10 @@ typedef struct		s_list
 typedef struct		s_data
 {
   char			**env;
-  t_list		*head;
+  t_list		*list;
+  t_list		*current;
+  int			exec_pos;
+  int			exec_return;
 }			t_data;
 
 char			**my_env_cpy(const char **env);
@@ -98,7 +101,8 @@ int			my_strlen(const char *str);
 int			my_strncmp(const char *s1, const char *s2,
 				   const int nb);
 int			error_msg(const char *msg);
-int			mysh(char **env);
+int			mysh(t_data *exec);
+int			script(t_data *exec);
 void			my_free_wordtab(char **tab);
 char			*my_epurstr(char *str);
 void			*error_null(const char *msg);
@@ -118,5 +122,15 @@ int			state_semicol(char *line, int *cpt);
 t_list			*my_smachine(char **line);
 char			**add_to_wordtab(char **src, char *arg);
 void			my_free_list(t_list *list);
+void			my_start_exec(t_data *exec);
+int			test_path(t_data *exec);
+char			*my_path_dup(const char *line,
+				     char *cmd, int cmd_len);
+int			error_mult(const char *msg, const char *part,
+				   const char *end);
+char			*my_path_dup(const char *line,
+				     char *cmd, int cmd_len);
+int			test_path(t_data *exec);
+void			exec_cmd(t_data *exec);
 
 #endif			/* !MYSH_H_ */
