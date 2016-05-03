@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Mon Apr 11 11:06:18 2016 Hugo SOSZYNSKI
-** Last update Tue Apr 12 18:56:00 2016 Hugo SOSZYNSKI
+** Last update Tue May  3 15:03:31 2016 Hugo SOSZYNSKI
 */
 
 #include	<stddef.h>
@@ -64,12 +64,12 @@ int		test_path(t_data *exec)
   current = exec->list;
   while (current != NULL)
     {
-      if (check_path(&(current->cmd[0]), path))
+      if (is_built_in(current) && check_path(&(current->cmd[0]), path))
 	current->correct = false;
       pipe = current->pipe;
       while (pipe != NULL)
 	{
-	  if (check_path(&(pipe->cmd[0]), path))
+	  if (is_built_in(current) && check_path(&(pipe->cmd[0]), path))
 	    pipe->correct = false;
 	  pipe = pipe->pipe;
 	}

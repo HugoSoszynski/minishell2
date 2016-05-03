@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Mar 29 17:00:46 2016 Hugo SOSZYNSKI
-** Last update Sun Apr 10 15:27:08 2016 Hugo SOSZYNSKI
+** Last update Tue May  3 14:47:17 2016 Hugo SOSZYNSKI
 */
 
 #include	<unistd.h>
@@ -41,20 +41,22 @@ int		script(t_data *exec)
 {
   char		*line;
 
-  while (exec->exec_pos == 0 && (line = get_next_line(0)) != NULL)
+  while (exec->exec_pos == 0 &&
+	exec->exit_bool == false && (line = get_next_line(0)) != NULL)
     {
       pars_and_exec(exec, &line);
       free(line);
     }
   my_free_wordtab(exec->env);
-  return (exec->exec_return);
+  return (SUCCESS);
 }
 
 int		mysh(t_data *exec)
 {
   char		*line;
 
-  while (exec->exec_pos == 0 && (line = my_prompt()) != NULL)
+  while (exec->exec_pos == 0 &&
+	exec->exit_bool == false && (line = my_prompt()) != NULL)
     {
       pars_and_exec(exec, &line);
       free(line);
@@ -62,5 +64,5 @@ int		mysh(t_data *exec)
   my_free_wordtab(exec->env);
   if (exec->exec_pos == 0)
     write(1, "exit\n", 5);
-  return (exec->exec_return);
+  return (SUCCESS);
 }

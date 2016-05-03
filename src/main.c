@@ -5,12 +5,13 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Mar 29 16:31:36 2016 Hugo SOSZYNSKI
-** Last update Tue Apr 12 15:03:51 2016 Hugo SOSZYNSKI
+** Last update Tue May  3 14:47:32 2016 Hugo SOSZYNSKI
 */
 
 #include	<stddef.h>
 #include	<unistd.h>
 #include	<sys/stat.h>
+#include	<signal.h>
 #include	"mysh.h"
 
 int		error_msg(const char *msg)
@@ -37,6 +38,12 @@ void		*error_null(const char *msg)
   return (NULL);
 }
 
+void		my_sighandler(int signum)
+{
+  write(2, "\n$> ", 4);
+  (void)(signum);
+}
+
 int		main(int ac, char **av, char **env)
 {
   t_data	exec;
@@ -44,14 +51,13 @@ int		main(int ac, char **av, char **env)
 
   (void)ac;
   (void)av;
-  exec.exec_pos = 0;
-  exec.exec_return = SUCCESS;
-  exec.exit_return = 0;
+  if (signal(SIGINT, my_sighandler) == SIG_ERR)
+    return (ERROR);
+  init_data(&exec);
   if (env == NULL || env[0] == NULL ||
       (exec.env = my_env_cpy((const char**)env)) == NULL)
     return (error_msg("Can't get or copy the env"));
   fstat(0, &prompt);
-  if (((S_ISCHR(prompt.st_mode)) ? (mysh(&exec)) : (script(&exec))) != SUCCESS)
-    return (ERROR);
+  (S_ISCHR(prompt.st_mode)) ? (mysh(&exec)) : (script(&exec));
   return (exec.exit_return);
 }

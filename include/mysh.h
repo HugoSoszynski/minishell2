@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Mar 29 16:32:45 2016 Hugo SOSZYNSKI
-** Last update Tue Apr 12 15:03:35 2016 Hugo SOSZYNSKI
+** Last update Tue May  3 15:25:10 2016 Hugo SOSZYNSKI
 */
 
 #ifndef			MYSH_H_
@@ -83,6 +83,7 @@ typedef struct		s_list
   char			**cmd;
   bool			correct;
   bool			origin;
+  bool			is_bi;
 }			t_list;
 
 typedef struct		s_data
@@ -93,6 +94,7 @@ typedef struct		s_data
   int			exec_pos;
   int			exec_return;
   unsigned char		exit_return;
+  bool			exit_bool;
 }			t_data;
 
 char			**my_env_cpy(const char **env);
@@ -133,5 +135,12 @@ char			*my_path_dup(const char *line,
 				     char *cmd, int cmd_len);
 int			test_path(t_data *exec);
 void			exec_cmd(t_data *exec);
+void			init_data(t_data *exec);
+int			is_built_in(t_list *current);
+void			exec_built_in(t_data *exec, t_list *current, int fd);
+void			my_exit(t_data *exec, t_list *current);
+void			my_env(t_data *exec, int fd);
+int			my_strcmp(const char *s1, const char *s2);
+int			my_getnbr(char *str);
 
 #endif			/* !MYSH_H_ */
