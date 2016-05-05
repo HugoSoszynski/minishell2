@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Mar 29 16:32:45 2016 Hugo SOSZYNSKI
-** Last update Thu May  5 10:31:56 2016 Hugo SOSZYNSKI
+** Last update Thu May  5 11:42:50 2016 Hugo SOSZYNSKI
 */
 
 #ifndef			MYSH_H_
@@ -144,5 +144,10 @@ int			my_strcmp(const char *s1, const char *s2);
 int			my_getnbr(char *str);
 void			my_unsetenv(t_data *exec, t_list *current);
 int			var_pos(char **env, char *var);
+void			my_setenv(t_data *exec, t_list *current, int fd);
+char			**add_env_var(char **env,
+				      const char *var, const char *value);
+void			change_env_var(char **env, int pos,
+				       const char *var, const char *value);
 
 #endif			/* !MYSH_H_ */
