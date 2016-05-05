@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Apr 12 13:24:42 2016 Hugo SOSZYNSKI
-** Last update Tue May  3 15:33:40 2016 Hugo SOSZYNSKI
+** Last update Thu May  5 10:44:44 2016 Hugo SOSZYNSKI
 */
 
 #include	<unistd.h>
@@ -19,6 +19,7 @@ void		exec_cmd(t_data *exec)
   int		status;
   int		pid;
 
+  status = 0;
   if (exec->current->is_bi == true)
     exec_built_in(exec, exec->current, 1);
   else
@@ -37,5 +38,6 @@ void		exec_cmd(t_data *exec)
       else
 	waitpid(pid, &status, 0);
     }
-  (void)(status);
+  if (status == 139)
+    write(2, "Segmentation Fault\n", 19);
 }

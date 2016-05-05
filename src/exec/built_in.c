@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Apr 12 21:42:54 2016 Hugo SOSZYNSKI
-** Last update Tue May  3 15:29:56 2016 Hugo SOSZYNSKI
+** Last update Thu May  5 10:35:07 2016 Hugo SOSZYNSKI
 */
 
 #include	"mysh.h"
@@ -32,6 +32,8 @@ void		exec_built_in(t_data *exec, t_list *current, int fd)
 {
   if (my_strcmp(current->cmd[0], "env") == SUCCESS)
     my_env(exec, fd);
-  if (my_strcmp(current->cmd[0], "exit") == SUCCESS)
+  else if (my_strcmp(current->cmd[0], "exit") == SUCCESS)
     my_exit(exec, current);
+  else if (my_strcmp(current->cmd[0], "unsetenv") == SUCCESS)
+    my_unsetenv(exec, current);
 }

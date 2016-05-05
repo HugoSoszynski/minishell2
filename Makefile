@@ -5,7 +5,7 @@
 ## Login   <hugo.soszynski@epitech.eu>
 ## 
 ## Started on  Tue Mar 29 16:08:49 2016 Hugo SOSZYNSKI
-## Last update Tue May  3 15:38:38 2016 Hugo SOSZYNSKI
+## Last update Thu May  5 10:47:13 2016 Hugo SOSZYNSKI
 ##
 
 CC	=	gcc
@@ -13,7 +13,7 @@ CC	=	gcc
 RM	=	rm -f
 
 CFLAGS	+=	-W -Wextra -Wall
-#CFLAGS	+=	-Werror
+CFLAGS	+=	-Werror
 CFLAGS	+=	-Iinclude
 #CFLAGS	+=	-ggdb3
 
@@ -46,7 +46,8 @@ SRCS	=	src/main.c \
 		src/exec/exec_cmd.c \
 		src/init_struct.c \
 		src/exec/built_in.c \
-		src/exec/env_and_exit.c
+		src/exec/env_and_exit.c \
+		src/exec/unsetenv.c
 
 OBJS	=	$(SRCS:.c=.o)
 
