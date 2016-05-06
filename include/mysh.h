@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Mar 29 16:32:45 2016 Hugo SOSZYNSKI
-** Last update Fri May  6 10:07:14 2016 Hugo SOSZYNSKI
+** Last update Fri May  6 14:13:25 2016 Hugo SOSZYNSKI
 */
 
 #ifndef			MYSH_H_
@@ -68,5 +68,6 @@ char			**add_env_var(char **env,
 void			change_env_var(char **env, int pos,
 				       const char *var, const char *value);
 void			exec_pipe(t_data *exec);
+void			my_cd(t_data *exec, t_list *current);
 
 #endif			/* !MYSH_H_ */

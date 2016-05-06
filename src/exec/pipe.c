@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Thu May  5 14:31:55 2016 Hugo SOSZYNSKI
-** Last update Fri May  6 12:56:02 2016 Hugo SOSZYNSKI
+** Last update Fri May  6 13:26:54 2016 Hugo SOSZYNSKI
 */
 
 #include	<unistd.h>
@@ -90,9 +90,14 @@ static void	launch_pipe_exec(t_data *exec, t_pipe *pipes,
   if (cpt < pipes->nb_pipe - 1)
     dup2(pipes->fd[cpt][1], 1);
   close_fd(pipes);
-  if ((pipes->pid[cpt] = execve(current->cmd[0],
-				current->cmd, exec->env)) == -1)
-    write(2, "Error: exec_cmd: Can't execve\n", 30);
+  if (current->is_bi == true)
+    exec_built_in(exec, current, 1);
+  else
+    {
+      if ((pipes->pid[cpt] = execve(current->cmd[0],
+				    current->cmd, exec->env)) == -1)
+	write(2, "Error: exec_cmd: Can't execve\n", 30);
+    }
 }
 
 void		exec_pipe(t_data *exec)
@@ -107,17 +112,19 @@ void		exec_pipe(t_data *exec)
   cpt = -1;
   while (++cpt < pipes.nb_pipe)
     {
-      if ((pipes.pid[cpt] = fork()) == -1)
+      if (my_strcmp(current->cmd[0], "exit") == SUCCESS)
+	exec_built_in(exec, current, 1);
+      else
 	{
-	  wait_childs(&pipes);
-	  return ;
+	  if ((pipes.pid[cpt] = fork()) == -1)
+	    return ;
+	  else if (pipes.pid[cpt] == 0)
+	    {
+	      launch_pipe_exec(exec, &pipes, cpt, current);
+	      return ;
+	    }
+	  current = current->pipe;
 	}
-      else if (pipes.pid[cpt] == 0)
-	{
-	  launch_pipe_exec(exec, &pipes, cpt, current);
-	  return ;
-	}
-      current = current->pipe;
     }
   wait_childs(&pipes);
 }

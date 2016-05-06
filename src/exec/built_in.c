@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Apr 12 21:42:54 2016 Hugo SOSZYNSKI
-** Last update Thu May  5 10:57:26 2016 Hugo SOSZYNSKI
+** Last update Fri May  6 14:14:34 2016 Hugo SOSZYNSKI
 */
 
 #include	"mysh.h"
@@ -38,4 +38,6 @@ void		exec_built_in(t_data *exec, t_list *current, int fd)
     my_unsetenv(exec, current);
   else if (my_strcmp(current->cmd[0], "setenv") == SUCCESS)
     my_setenv(exec, current, fd);
+  else if (my_strcmp(current->cmd[0], "cd") == SUCCESS)
+    my_cd(exec, current);
 }
