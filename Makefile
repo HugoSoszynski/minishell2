@@ -5,7 +5,7 @@
 ## Login   <hugo.soszynski@epitech.eu>
 ## 
 ## Started on  Tue Mar 29 16:08:49 2016 Hugo SOSZYNSKI
-## Last update Thu May  5 11:53:23 2016 Hugo SOSZYNSKI
+## Last update Fri May  6 10:08:49 2016 Hugo SOSZYNSKI
 ##
 
 CC	=	gcc
@@ -48,7 +48,8 @@ SRCS	=	src/main.c \
 		src/exec/built_in.c \
 		src/exec/env_and_exit.c \
 		src/exec/unsetenv.c \
-		src/exec/setenv.c
+		src/exec/setenv.c \
+		src/exec/pipe.c
 
 OBJS	=	$(SRCS:.c=.o)
 

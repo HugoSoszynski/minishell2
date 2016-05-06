@@ -5,7 +5,7 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Sun Apr 10 10:05:40 2016 Hugo SOSZYNSKI
-** Last update Tue Apr 12 13:56:56 2016 Hugo SOSZYNSKI
+** Last update Fri May  6 10:16:54 2016 Hugo SOSZYNSKI
 */
 
 #include	<unistd.h>
@@ -74,7 +74,10 @@ void		my_start_exec(t_data *exec)
     {
       if (!my_check_cmd(exec->current))
 	{
-	  exec_cmd(exec);
+	  if (exec->current->pipe != NULL)
+	    exec_pipe(exec);
+	  else
+	    exec_cmd(exec);
 	}
       exec->current = exec->current->next;
     }

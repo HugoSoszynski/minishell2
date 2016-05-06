@@ -5,97 +5,15 @@
 ** Login   <hugo.soszynski@epitech.eu>
 **
 ** Started on  Tue Mar 29 16:32:45 2016 Hugo SOSZYNSKI
-** Last update Thu May  5 11:42:50 2016 Hugo SOSZYNSKI
+** Last update Fri May  6 10:07:14 2016 Hugo SOSZYNSKI
 */
 
 #ifndef			MYSH_H_
 # define		MYSH_H_
 
-#include		<stdbool.h>
-
-# ifndef		SUCCESS
-#  define		SUCCESS		(0)
-# endif			/* !SUCCESS */
-
-# ifndef		ERROR
-#  define		ERROR		(1)
-# endif			/* !ERROR */
-
-# ifndef		T_CMD
-#  define		T_CMD		(0)
-# endif			/* !T_CMD */
-
-# ifndef		T_SCOL
-#  define		T_SCOL		(1)
-# endif			/* !T_SCOL */
-
-# ifndef		T_PIPE
-#  define		T_PIPE		(2)
-# endif			/* !T_PIPE */
-
-# ifndef		T_RREDIR
-#  define		T_RREDIR	(3)
-# endif			/* !T_RREDIR */
-
-# ifndef		T_REDIRL
-#  define		T_REDIRL	(4)
-# endif			/* !T_REDIRL */
-
-# ifndef		T_DREDIRL
-#  define		T_DREDIRL	(5)
-# endif			/* !T_DREDIRL */
-
-# ifndef		T_NULL
-#  define		T_NULL		(6)
-# endif			/* !T_END */
-
-# ifndef		T_FILE
-#  define		T_FILE		(7)
-# endif			/* !T_FILE */
-
-# ifndef		T_STRING
-#  define		T_STRING	(8)
-# endif			/* !T_STRING */
-
-# ifndef		T_ARG
-#  define		T_ARG		(9)
-# endif			/* !T_STRING */
-
-# ifndef		T_LINE
-#  define		T_LINE		(10)
-# endif			/* !T_LINE */
-
-# ifndef		T_ERROR
-#  define		T_ERROR		(-1)
-# endif			/* !T_ERROR */
-
-typedef struct		s_redir
-{
-  char			activ;
-  char			a_type;
-  char			*arg;
-}			t_redir;
-
-typedef struct		s_list
-{
-  struct s_list		*next;
-  struct s_list		*pipe;
-  char			**cmd;
-  bool			correct;
-  bool			origin;
-  bool			is_bi;
-}			t_list;
-
-typedef struct		s_data
-{
-  char			**env;
-  t_list		*list;
-  t_list		*current;
-  int			exec_pos;
-  int			exec_return;
-  unsigned char		exit_return;
-  bool			exit_bool;
-}			t_data;
+# include		<stdbool.h>
+# include		"define.h"
+# include		"struct.h"
 
 char			**my_env_cpy(const char **env);
 char			*my_getenv(char **env, const char *var);
@@ -149,5 +67,6 @@ char			**add_env_var(char **env,
 				      const char *var, const char *value);
 void			change_env_var(char **env, int pos,
 				       const char *var, const char *value);
+void			exec_pipe(t_data *exec);
 
 #endif			/* !MYSH_H_ */
